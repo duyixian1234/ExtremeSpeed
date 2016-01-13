@@ -35,14 +35,19 @@ void startGame(){
 float getheight(float x, float z){
 	x /= XSCALE;
 	z /= ZSCALE;
-	int x_loc = floor(x);
-	int z_loc = floor(z);
-	float ay = map.y[((z_loc)* map.width) + (x_loc)];
-	float by = map.y[((z_loc)* map.width) + (x_loc + 1)];
-	float cy = map.y[((z_loc + 1) * map.width) + (x_loc + 1)];
-	float k1 = x - x_loc;
-	float k2 = z - z_loc;
-	return ay*(k1*k2 - k1 - k2) + by*k1 + cy*k2;
+	int xf = floor(x);
+	int zf = floor(z);
+	float ay = map.y[((zf+0)*map.width)+xf+0];
+	float by = map.y[((zf+0)*map.width)+xf+1];
+	float cy = map.y[((zf+1)*map.width)+xf+1];
+	float dy = map.y[((zf+1)*map.width)+xf+0];
+	float k1 = x - xf;
+	float k2 = z - zf;
+	float y;
+	y=k1>k2
+		?ay*(1-k1)+by*(k1-k2)+cy*k2	// in triangle abc
+		:ay*(2-k1-k2)+by*(k1-1)+dy*k2;	// in triangle acd
+	return y;
 
  /* PLANE alpha;
   float current_height,x_location,z_location;
@@ -72,7 +77,23 @@ void nextFrame(void){
 	ship.rotation_acceleration=0.025*adjust;
 	ship.rotation-=ship.rotation>360?-360:0;
 	ship.rotation+=ship.rotation<0?360:0;
+
 	if(ship.rotation_direction==1){
+		rot_plus+=1.0*adjust;
+		if(rot_plus>30) rot_plus=30;
+	}else if(ship.rotation_direction==-1){
+		rot_plus-=1.0*adjust;
+		if(rot_plus<-30) rot_plus=-30;
+	}else{
+		if(rot_plus>0){
+			rot_plus-=1.0*adjust;
+			if(rot_plus<0) rot_plus=0;
+		}else if(rot_plus<0){
+			rot_plus+=1.0*adjust;
+			if(rot_plus>0) rot_plus=0;
+		}
+	}
+	/*if(ship.rotation_direction==1){
 		if(rot_plus<=30) rot_plus+=1*adjust;
 	}else if(ship.rotation_direction==-1){
 		if(rot_plus >= -30) rot_plus-=1* adjust;
@@ -81,19 +102,19 @@ void nextFrame(void){
 			rot_plus-=1*adjust;
 		else if(rot_plus<0)
 			rot_plus+=1*adjust;
-	}
+	}*/
 
 	if(game_end)return;
 
 	/* Player Movement */
-	ship.x   += ship.vel * sin(ship.rotation*degtorad) 	* adjust;
-	ship.y    = getheight(-ship.x, -ship.z) + YSHIFT;
+	ship.x+=ship.vel*sin(ship.rotation*degtorad)*adjust;
+	ship.y=getheight(-ship.x,-ship.z)+YSHIFT;
 	if(ship.y>YSHIFT+50){
 		game_end=1;
 		return;
-	}	
-	ship.z   += ship.vel * cos(ship.rotation*degtorad) 	* adjust;
-	ship.rotation += ship.rotation_velocity * adjust;
+	}
+	ship.z+=ship.vel*cos(ship.rotation*degtorad)*adjust;
+	ship.rotation+=ship.rotation_velocity*adjust;
 
 
 	/* Velocity Calculations */
@@ -105,20 +126,24 @@ void nextFrame(void){
 		ship.vel=ship.vel>0?0:ship.vel;
 	}
   
-	/* Rotational Velocity Calculations */
-	if(ship.rotation_direction > 0){				/* Right Rotation */
-		if(ship.rotation_velocity <= ship.max_rotation_velocity)
-			ship.rotation_velocity += ship.rotation_acceleration * ship.rotation_direction;	/* Accelerate to Max Rotation */
-	}else if(ship.rotation_direction < 0){				/* Left Rotation */
-		if(ship.rotation_velocity >= -ship.max_rotation_velocity)
-			ship.rotation_velocity += ship.rotation_acceleration * ship.rotation_direction;	/* Accelerate to Max Rotation */
+	if(ship.rotation_direction>0){
+		ship.rotation_velocity+=ship.rotation_acceleration;
+		if(ship.rotation_velocity>ship.max_rotation_velocity)
+			ship.rotation_velocity=ship.max_rotation_velocity;
+	}else if(ship.rotation_direction<0){
+		ship.rotation_velocity-=ship.rotation_acceleration;
+		if(ship.rotation_velocity<-ship.max_rotation_velocity)
+			ship.rotation_velocity=-ship.max_rotation_velocity;
 	}else{
-		if(ship.rotation_velocity > 0)
-			ship.rotation_velocity -= ship.rotation_acceleration;			/* Left Deccel */
-		else if (ship.rotation_velocity < 0)
-			ship.rotation_velocity += ship.rotation_acceleration;			/* Right Deccel */
-		else
-			ship.rotation_velocity = 0;				/* Stop Rotating*/
+		if(ship.rotation_velocity > 0){
+			ship.rotation_velocity -= ship.rotation_acceleration;
+			if(ship.rotation_velocity<0)
+				ship.rotation_velocity=0;
+		}else if(ship.rotation_velocity < 0){
+			ship.rotation_velocity += ship.rotation_acceleration;
+			if(ship.rotation_velocity>0)
+				ship.rotation_velocity=0;
+		}
 	}
 
 	if(game_start)score+=ship.direction?1*adjust:-2*adjust;

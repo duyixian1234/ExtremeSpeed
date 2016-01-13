@@ -6,7 +6,11 @@
 static unsigned char* loadBitmap(char *file_name,BITMAPINFOHEADER *bitmap_info_header){
 	FILE *file_ptr;
 	BITMAPFILEHEADER bitmap_file_header;
+#ifndef __MINGW32__
 	fopen_s(&file_ptr,file_name,"rb");
+#else
+	file_ptr=fopen(file_name,"rb");
+#endif
 	if(!file_ptr)error("loadBitmap: %s failed to open",file_name);
 	fread(&bitmap_file_header,sizeof(BITMAPFILEHEADER),1,file_ptr);
 	if(bitmap_file_header.bfType!=0x4D42)error("loadBitmap: %s is not a bitmap file",file_name);

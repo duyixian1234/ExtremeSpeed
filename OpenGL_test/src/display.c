@@ -39,8 +39,31 @@ static void drawSkybox(float width,float height,float length){
 }
 
 static void drawMap(MAP *map){
-	int x,z;
+	/*
+	 * abcd are the four point of the quads
+	 * 	dc
+	 * 	ab
+	 * use GL_TRIANGLE_FAN to draw abcda, so we have 2 triangles: abc and acd
+	*/
+	const int dx[]={0,1,1,0,0};
+	const int dz[]={0,0,1,1,0};
 	glBindTexture(GL_TEXTURE_2D, texture[9]);
+	int nz=map->height;
+	int nx=map->width;
+	int x,z,i;
+	for(z=0;z<nz-2;z++)
+		for(x=0;x<nx-2;x++){
+			glBegin(GL_TRIANGLE_FAN);
+			for(i=0;i<5;i++){
+				int tx=x+dx[i];
+				int tz=z+dz[i];
+				int ty=map->y[tz*nx+tx];
+				glTexCoord2f((float)tx/(nx-1),(float)tz/(nz-1));
+				glVertex3f(XSCALE*tx,ty,ZSCALE*tz);
+			}
+			glEnd();
+		}
+	/*
 	for(z=0; z<map->height-2; z++){
 		for(x=0; x<map->width-2; x++){
 			float ua = (float)  x    / (map->width  - 1);
@@ -62,7 +85,7 @@ static void drawMap(MAP *map){
 			glVertex3f  (XSCALE*x, map->y[index_d], ZSCALE*(z+1));
 			glEnd();
 		}
-	}
+	}*/
 }
 
 static void drawShip(void){
@@ -101,7 +124,11 @@ static void drawScore(void){
 	glLoadIdentity();
 
 	char str[30];
+#ifndef __MINGW32__
 	sprintf_s(str,20,"SCORE: %.0f",score);
+#else
+	sprintf(str,"SCORE: %.0f",score);
+#endif
 
 	glBindTexture(GL_TEXTURE_2D,0);
 	glColor3f(0,0,0);

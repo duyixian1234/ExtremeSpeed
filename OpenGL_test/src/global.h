@@ -1,15 +1,21 @@
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
+#define MINGW
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
 #include "GL/glut.h"
+#ifndef __MINGW32__
+	#include "GL/glut.h"
+#else
+	#include <gl/gl.h>
+	#include <gl/glu.h>
+	#include <gl/glut.h>
+	#include "GL/glut.h"
+#endif
 
-
-#define TITLE		"Race Game"
-#define VERSION		"0.5"
 #define NUM_TEXTURES	14				/* Number of textures to load */
 #define radtodeg	57.295779513			/* 180 / pi */
 #define degtorad	0.0174532925			/* pi / 180 */

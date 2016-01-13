@@ -18,7 +18,7 @@
 #define XSCALE		50
 #define YSCALE		200
 #define ZSCALE		50
-#define YSHIFT		20
+#define YSHIFT		30
 #define COURSES		3
 
 typedef struct{

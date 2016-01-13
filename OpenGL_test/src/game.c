@@ -19,8 +19,8 @@ void initGame(){
 	ship.direction=0;
 	ship.rotation_direction=0;
 	ship.rotation=180;
-	ship.x=-600;
-	ship.z=-1000;
+	ship.x=-XSCALE*10;
+	ship.z = -ZSCALE * 10;;
 	game_start=0;
 	game_end=0;
 	score=0;

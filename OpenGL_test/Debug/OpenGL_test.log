@@ -1,21 +1,7 @@
-﻿  vector.c
-  resourse.c
+﻿  resourse.c
   messages.c
   main.c
   game.c
   display.c
-  正在运行 C/C++ 代码分析...
   正在生成代码...
   OpenGL_test.vcxproj -> C:\Users\yixian\Documents\courses\CAD\ExtremeSpeed\Debug\OpenGL_test.exe
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\gl\glut.h(146): warning C28251: “exit”的批注不一致: 此实例包含 无批注。请参见 c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(50)。
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\game.c(30): warning C28159: 考虑使用“GetTickCount64”而不是“GetTickCount”。原因: GetTickCount overflows roughly every 49 days.  Code that does not take that into account can loop indefinitely.  GetTickCount64 operates on 64 bit values and does not have that problem
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\game.c(76): warning C28159: 考虑使用“GetTickCount64”而不是“GetTickCount”。原因: GetTickCount overflows roughly every 49 days.  Code that does not take that into account can loop indefinitely.  GetTickCount64 operates on 64 bit values and does not have that problem
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(11): warning C6387: “file_ptr”可能是“0”: 这不符合函数“fread”的规范。
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(15): warning C6387: “file_ptr”可能是“0”: 这不符合函数“fseek”的规范。查看第 11 行以找出可能会发生此情况的前一位置
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(18): warning C6387: “bitmap_image”可能是“0”: 这不符合函数“fread”的规范。
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(23): warning C6385: 从“bitmap_image”中读取的数据无效: 可读大小为“bitmap_info_header->biSizeImage”个字节，但可能读取了“3”个字节。
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(24): warning C6386: 写入到“bitmap_image”时缓冲区溢出: 可写大小为“bitmap_info_header->biSizeImage”个字节，但可能写入了“3”个字节。
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(22): warning C6011: 取消对 NULL 指针“bitmap_image”的引用。查看第 18 行以找出可能会发生此情况的前一位置
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(26): warning C6387: “file_ptr”可能是“0”: 这不符合函数“fclose”的规范。查看第 11 行以找出可能会发生此情况的前一位置
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(64): warning C6386: 写入到“course->y”时缓冲区溢出: 可写大小为“sizeof(float)*course->width*(unsigned int)(course->height-1)”个字节，但可能写入了“8”个字节。
-c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\resourse.c(64): warning C6011: 取消对 NULL 指针“course->y”的引用。

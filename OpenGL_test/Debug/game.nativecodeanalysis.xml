@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\gl\</FILEPATH>
+      <FILENAME>glut.h</FILENAME>
+      <LINE>146</LINE>
+      <COLUMN>28</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>“exit”的批注不一致: 此实例包含 无批注。请参见 c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(50)。</DESCRIPTION>
+    <FUNCTION>exit</FUNCTION>
+    <DECORATED>exit</DECORATED>
+    <FUNCLINE>146</FUNCLINE>
+    <PATH />
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\</FILEPATH>
+      <FILENAME>game.c</FILENAME>
+      <LINE>30</LINE>
+      <COLUMN>29</COLUMN>
+    </SFA>
+    <DEFECTCODE>28159</DEFECTCODE>
+    <DESCRIPTION>考虑使用“GetTickCount64”而不是“GetTickCount”。原因: GetTickCount overflows roughly every 49 days.  Code that does not take that into account can loop indefinitely.  GetTickCount64 operates on 64 bit values and does not have that problem</DESCRIPTION>
+    <FUNCTION>startGame</FUNCTION>
+    <DECORATED>startGame</DECORATED>
+    <FUNCLINE>28</FUNCLINE>
+    <PATH />
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\yixian\documents\courses\cad\extremespeed\opengl_test\src\</FILEPATH>
+      <FILENAME>game.c</FILENAME>
+      <LINE>76</LINE>
+      <COLUMN>32</COLUMN>
+    </SFA>
+    <DEFECTCODE>28159</DEFECTCODE>
+    <DESCRIPTION>考虑使用“GetTickCount64”而不是“GetTickCount”。原因: GetTickCount overflows roughly every 49 days.  Code that does not take that into account can loop indefinitely.  GetTickCount64 operates on 64 bit values and does not have that problem</DESCRIPTION>
+    <FUNCTION>get_fps</FUNCTION>
+    <DECORATED>get_fps</DECORATED>
+    <FUNCLINE>75</FUNCLINE>
+    <PATH />
+  </DEFECT>
+</DEFECTS>

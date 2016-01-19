@@ -63,29 +63,7 @@ static void drawMap(MAP *map){
 			}
 			glEnd();
 		}
-	/*
-	for(z=0; z<map->height-2; z++){
-		for(x=0; x<map->width-2; x++){
-			float ua = (float)  x    / (map->width  - 1);
-			float ub  = (float) (x+1) / (map->width  - 1);
-			float va  = (float)  z    / (map->height - 1);
-			float vb  = (float) (z+1) / (map->height - 1);
-			int index_a = ( z    * map->width) +  x   ;
-			int index_b = ( z    * map->width) + (x+1);
-			int index_c = ((z+1) * map->width) + (x+1);
-			int index_d = ((z+1) * map->width) +  x   ;
-			glBegin(GL_QUADS);
-			glTexCoord2f(ua, va);
-			glVertex3f  (XSCALE*x, map->y[index_a], ZSCALE*z);
-			glTexCoord2f(ub, va);	
-			glVertex3f  (XSCALE*(x+1), map->y[index_b], ZSCALE*z);
-			glTexCoord2f(ub, vb);
-			glVertex3f  (XSCALE*(x+1), map->y[index_c], ZSCALE*(z+1));
-			glTexCoord2f(ua, vb);
-			glVertex3f  (XSCALE*x, map->y[index_d], ZSCALE*(z+1));
-			glEnd();
-		}
-	}*/
+	
 }
 
 static void drawShip(void){

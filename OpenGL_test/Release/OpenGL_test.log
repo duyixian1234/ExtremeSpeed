@@ -1,9 +1,8 @@
-﻿  display.c
-  game.c
+﻿  game.c
   main.c
-  messages.c
-  resourse.c
   正在生成代码
-  All 30 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  1 of 30 functions ( 3.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
   OpenGL_test.vcxproj -> C:\Users\yixian\Documents\courses\CAD\ExtremeSpeed\Release\OpenGL_test.exe
